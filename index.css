@@ -11,17 +11,21 @@ body {
     margin: auto;
     padding: 20px;
     background-image: url("/pictures/small.jpg");
-    
+
+}
+
+h1 {
+    text-align: center;
+
+}
+
+.span {
+    color: skyblue;
 }
 
 .search{
     border-radius: 5px;
 }
-
-h1 {
-    text-align: center;
-}
-
 input {
     width: calc(100% - 90px);
     padding: 10px;

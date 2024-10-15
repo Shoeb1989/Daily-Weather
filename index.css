@@ -44,43 +44,20 @@ button {
     
 }
 
-.forecast-container {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-   
-}
-
-
-.forecast-right {
-    width: 45%; /* Adjust as necessary */
-    padding: 10px;
-    margin-top:auto;
-    background-image: url("/pictures/weatherimg.jpg");
-    
-
-}
-
-.forecast-left {
-    list-style-type: none;
-   
-}
-
 .weather-info ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
-
+    list-style-type: none; /* Optional: Remove bullet points */
+      
     
 }
 
 .weather-info li {
-    margin: 10px 0; /* Add spacing between items */
-    padding: 10px;
-    background-color: #fff; /* Adjust as necessary */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center; /* Center the list items as well */
+    margin: 7px 0; /* Add some spacing between list items */
+    padding: 20px;
+    background-image: url("/pictures/weatherimg.jpg");
+    border-radius: 8px;
+    font-weight: 700;
+    
    
 
 }
-
-

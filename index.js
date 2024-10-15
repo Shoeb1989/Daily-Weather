@@ -17,7 +17,7 @@ searchButton.addEventListener('click', () => {
 });
 
 async function fetchWeather(city) {
-    const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=6`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
     
     try {
         const response = await fetch(url);
@@ -37,29 +37,20 @@ function displayWeather(data) {
     const { temp_c, condition } = data.current;
     const forecast = data.forecast.forecastday;
 
-    let forecastHTMLLeft = `<h2>${name}, ${region}, ${country}</h2>`;
-    forecastHTMLLeft += `<p>Current Temperature: ${temp_c}°C</p>`;
-    forecastHTMLLeft += `<p>Condition: ${condition.text}</p>`;
-    forecastHTMLLeft += `<img src="${condition.icon}" alt="${condition.text}">`;
-    forecastHTMLLeft += `<h3>Upcoming Forecast</h3><ul>`;
+    let forecastHTML = `<h2>${name}, ${region}, ${country}</h2>`;
+    forecastHTML += `<p>Current Temperature: ${temp_c}°C</p>`;
+    forecastHTML += `<p>Condition: ${condition.text}</p>`;
+    forecastHTML += `<img src="${condition.icon}" alt="${condition.text}">`;
+    forecastHTML += `<h3>Upcoming Forecast</h3><ul>`;
 
-    let forecastHTMLRight = ``;
 
-    forecast.slice(0, 3).forEach(day => {
-        forecastHTMLLeft += `<li>${day.date}: <br>${day.day.avgtemp_c}°C <br>${day.day.condition.text}</li>`;
+    forecast.forEach(day => {
+        forecastHTML += `<li>${day.date} <br><br> ${day.day.avgtemp_c}°C <br><br> ${day.day.condition.text}</li>`;
     });
 
-    forecast.slice(3).forEach(day => {
-        forecastHTMLRight += `<li>${day.date}: <br>${day.day.avgtemp_c}°C <br>${day.day.condition.text}</li>`;
-    });
-
-    forecastHTMLLeft += '</ul>';
-    forecastHTMLRight += '</ul>';
-
-    document.querySelector('.forecast-left').innerHTML = forecastHTMLLeft;
-    document.querySelector('.forecast-right').innerHTML = forecastHTMLRight;
+    forecastHTML += '</ul>';
+    weatherInfo.innerHTML = forecastHTML;
 }
-
 
 function showError(message) {
     weatherInfo.innerHTML = '';

@@ -1,4 +1,5 @@
-const apiKey = process.env.WEATHER_API_KEY;
+
+const apiKey = 'e3ccc369eeb242e6afc143710241610';
 const searchButton = document.getElementById('search-btn');
 const cityInput = document.getElementById('city-input');
 const weatherInfo = document.getElementById('weather-info');
@@ -18,11 +19,14 @@ searchButton.addEventListener('click', () => {
 
 async function fetchWeather(city) {
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
-    
+    console.log(`Fetching from URL: ${url}`);
+
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error('City not found');
+            const errorData = await response.json();
+            throw new Error(`Error: ${errorData.error.message}`);
+            
         }
         const data = await response.json();
         displayWeather(data);

@@ -1,12 +1,8 @@
-
 const apiKey = 'e3ccc369eeb242e6afc143710241610';
 const searchButton = document.getElementById('search-btn');
 const cityInput = document.getElementById('city-input');
 const weatherInfo = document.getElementById('weather-info');
 const errorMessage = document.getElementById('error-message');
-
-
-
 
 searchButton.addEventListener('click', () => {
     const city = cityInput.value.trim();
@@ -26,9 +22,13 @@ async function fetchWeather(city) {
         if (!response.ok) {
             const errorData = await response.json();
             throw new Error(`Error: ${errorData.error.message}`);
-            
         }
+        
         const data = await response.json();
+        if (!data || !data.location || !data.current) {
+            throw new Error('Unexpected response structure.');
+        }
+
         displayWeather(data);
     } catch (error) {
         showError(error.message);
@@ -36,20 +36,21 @@ async function fetchWeather(city) {
 }
 
 function displayWeather(data) {
-    errorMessage.textContent = ''; // Clear previous error messages
-    const { name, region, country } = data.location;
+    errorMessage.textContent = ''; 
+    const { name, country } = data.location;
     const { temp_c, condition } = data.current;
     const forecast = data.forecast.forecastday;
 
-    let forecastHTML = `<h2>${name}, ${region}, ${country}</h2>`;
+    let forecastHTML = `<h2>${name}, ${country}</h2>`;
     forecastHTML += `<p>Current Temperature: ${temp_c}°C</p>`;
-    forecastHTML += `<p>Condition: ${condition.text}</p>`;
-    forecastHTML += `<img src="${condition.icon}" alt="${condition.text}">`;
+    forecastHTML += `<p>Condition: ${condition ? condition.text : 'N/A'}</p>`;
+    if (condition && condition.icon) {
+        forecastHTML += `<img src="${condition.icon}" alt="${condition.text}">`;
+    }
     forecastHTML += `<h3>Upcoming Forecast</h3><ul>`;
 
-
     forecast.forEach(day => {
-        forecastHTML += `<li>${day.date} <br><br> ${day.day.avgtemp_c}°C <br><br> ${day.day.condition.text}</li>`;
+        forecastHTML += `<li>${day.date} <br> <br> <div> ${day.day.avgtemp_c}°C </div> <br> ${day.day.condition.text}</li>`;
     });
 
     forecastHTML += '</ul>';

@@ -23,9 +23,10 @@ h1 {
     color: skyblue;
 }
 
-.search{
+.search {
     border-radius: 5px;
 }
+
 input {
     width: calc(100% - 90px);
     padding: 10px;
@@ -70,6 +71,8 @@ button {
 
 .weather-info {
     margin-top: 20px;
+    text-align: center;
+
 }
 
 .error-message {
@@ -89,23 +92,26 @@ button {
 
 .weather-info ul {
     list-style-type: none;
-    /* Optional: Remove bullet points */
+
 
 
 }
-
-
-
-
 .weather-info li {
     text-align: center;
-    /* Center the list items as well */
     margin: 7px 0;
-    /* Add some spacing between list items */
     padding: 20px;
     background-image: url("/pictures/small.jpg");
     opacity: 0.5;
     border-radius: 8px;
     font-weight: bolder;
 
+}
+
+.weather-info li div {
+    background-color: yellowgreen;
+    opacity: 1.5;
+    font-weight: 600;
+    border-radius: 5px;
+   max-width: 200px;
+   margin-left: 154px;
 }

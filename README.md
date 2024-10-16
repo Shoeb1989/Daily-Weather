@@ -34,6 +34,12 @@ The** Daily Weather** website is a user-friendly application that allows users t
 - The `displayWeather` function formats and displays the weather data:
   - Extracts relevant information such as city name, temperature, and weather conditions.
   - Constructs HTML to show current weather and a forecast for the next few days.
+ 
+## Screenshot 
+![image](https://github.com/user-attachments/assets/c0955998-4fdb-403e-b08e-05bbcdd42fbd)
+![image](https://github.com/user-attachments/assets/8480fdc9-6d35-4dc3-a496-ea491486da96)
+
+
   - Uses a loop to create a list of upcoming forecast days.
 
 #### Error Handling
